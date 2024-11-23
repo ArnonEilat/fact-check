@@ -1,0 +1,23 @@
+.fc-btn {
+  top: 6px;
+  right: 54px;
+  border: none;
+  height: 26px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 12px;
+  user-select: none;
+  cursor: pointer;
+  position: absolute;
+  width: 100px;
+  background-color: rgb(189 9 5);
+  display: none;
+}
+
+.fc-btn:hover {
+  text-decoration: underline;
+}
+[data-testid='tweet']:hover .fc-btn {
+  display: block;
+}
