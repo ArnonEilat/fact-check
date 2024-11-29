@@ -1,6 +1,6 @@
-import { SocialMediaPost } from '../../../types';
-import { LanguageModelData } from '../types';
-import { timeAgo } from './util';
+import { SocialMediaPost } from '../../../../types';
+import { LanguageModelData } from '../../types';
+import { timeAgo } from '../util';
 
 const formatTime = (dateTime: string) => {
   if (!dateTime) {
@@ -47,7 +47,7 @@ Ensure your analysis is impartial, detailed, and easy to understand. Maintain a 
 1. **Classification:** Classify the post as fact-checkable, satirical, opinion-based, or factual.  
 2. **Analysis Summary:** Provide a brief summary of the post's nature and intent.  
 3. **Findings:** Include detailed evaluations of fact-checking, context, logic, and evidence, as applicable.  
-4. **Conclusion:** Summarize your findings with an emphasis on actionable insights.  
+4. **Conclusion:** Summarize your findings with an emphasis on actionable insights.
 `.trim();
 
 export const composeSocialMediaPostPrompt = async (
