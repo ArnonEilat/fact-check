@@ -7,7 +7,8 @@
       "esnext"
     ],
     "types": [
-      "chrome"
+      "chrome",
+      "@types/dom-chromium-ai"
     ],
     "allowJs": false,
     "skipLibCheck": true,
