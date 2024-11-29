@@ -1,0 +1,19 @@
+.explainer {
+  margin: 0 auto;
+  width: calc(100vw - 48px);
+  max-width: 600px;
+  padding: 24px 0px 0px 0px;
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h1 {
+  /* font-size: clamp(1.5rem, 5vw, 3rem); */
+  /* font-size: clamp(var(--font-size-6), 5vw, var(--font-size-8)); */
+
+  /* -size: var(--font-size-8); */
+  /*     font-size: var(--font-size-6); */
+}
