@@ -1,4 +1,3 @@
-import { Readability } from '@mozilla/readability';
 import { MessageType, SocialMediaPost, SidePanelDataType } from '../../types';
 
 const targetNode = document.querySelector('[role="main"]') as Element;
@@ -9,21 +8,6 @@ const config: MutationObserverInit = {
   childList: true,
   subtree: true,
 };
-
-chrome.runtime.onMessage.addListener(
-  async (message, _sender: chrome.runtime.MessageSender, sendResponse) => {
-    if (message.type === MessageType.BROWSER_ACTION_CLICK) {
-      const documentClone = document.cloneNode(true) as Document;
-      const article = new Readability(documentClone).parse();
-
-      sendResponse({
-        type: MessageType.OPEN_SIDE_PANEL,
-        dataType: SidePanelDataType.ARTICLE,
-        data: article,
-      });
-    }
-  }
-);
 
 // Callback function to execute when mutations are observed
 const callback = async (_mutationList: any, _observer: any) => {

@@ -41,9 +41,16 @@ const options = {
     sidePanel: path.join(__dirname, 'src', 'pages', 'SidePanel', 'index.tsx'),
     background: path.join(__dirname, 'src', 'pages', 'Background', 'index.ts'),
     contentScript: path.join(__dirname, 'src', 'pages', 'Content', 'index.tsx'),
+    contentScraper: path.join(
+      __dirname,
+      'src',
+      'pages',
+      'ContentScraper',
+      'index.ts'
+    ),
   },
   chromeExtensionBoilerplate: {
-    notHotReload: ['background', 'contentScript'],
+    notHotReload: ['background', 'contentScript', 'contentScraper'],
   },
   output: {
     filename: '[name].bundle.js',

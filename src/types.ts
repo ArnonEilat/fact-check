@@ -32,8 +32,6 @@ export enum MessageType {
   SIDE_PANEL_LOADED = 'side-panel-loaded',
   SET_SIDE_PANEL_DATA = 'set-side-panel-data',
   SET_SIDE_PANEL_MODE = 'set-side-panel-mode',
-  BROWSER_ACTION_CLICK = 'browser-action-click',
-  SET_ARTICLE = 'set-article',
 }
 
 export enum SidePanelDataType {

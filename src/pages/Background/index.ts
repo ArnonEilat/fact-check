@@ -13,10 +13,24 @@ declare namespace globalThis {
   };
 }
 
-// Allows users to open the side panel by clicking on the action toolbar icon
-globalThis.chrome.sidePanel
-  .setPanelBehavior({ openPanelOnActionClick: true })
-  .catch((error: any) => console.error(error));
+chrome.action.onClicked.addListener(async (tab) => {
+  await globalThis.chrome.sidePanel.open({
+    tabId: tab.id as number,
+  });
+
+  await globalThis.chrome.sidePanel.setOptions({
+    tabId: tab.id as number,
+    path: 'sidePanel.html',
+    enabled: true,
+  });
+
+  await delay(200);
+
+  await chrome.scripting.executeScript({
+    target: { tabId: tab.id as number },
+    files: ['contentScraper.bundle.js'],
+  });
+});
 
 chrome.runtime.onMessage.addListener(
   async (message, sender: chrome.runtime.MessageSender) => {
@@ -26,13 +40,14 @@ chrome.runtime.onMessage.addListener(
       case MessageType.OPEN_SIDE_PANEL:
         {
           await globalThis.chrome.sidePanel.open({ tabId });
+
           await globalThis.chrome.sidePanel.setOptions({
             tabId,
             path: 'sidePanel.html',
             enabled: true,
           });
 
-          await delay(500);
+          await delay(200);
 
           const { dataType, data } = message;
 
@@ -45,31 +60,27 @@ chrome.runtime.onMessage.addListener(
         break;
       case MessageType.SIDE_PANEL_LOADED:
         {
-          const [tab] = await chrome.tabs.query({
-            active: true,
-            lastFocusedWindow: true,
-          });
+          // const [tab] = await chrome.tabs.query({
+          //   active: true,
+          //   lastFocusedWindow: true,
+          // });
 
-          const url = tab.url ?? sender.tab?.url ?? '';
+          const url = sender.tab?.url ?? '';
 
-          if (new URL(url).origin === 'https://x.com') {
-            chrome.runtime.sendMessage({
+          // await globalThis.chrome.sidePanel.setOptions({
+          //   tabId,
+          // });
+          // await chrome.scripting.executeScript({
+          //   target: { tabId: tab.id as number },
+          //   files: ['contentScraper.bundle.js'],
+          // });
+
+          if (url && new URL(url).origin === 'https://x.com') {
+            await chrome.runtime.sendMessage({
               type: MessageType.SET_SIDE_PANEL_MODE,
             });
             return;
           }
-
-          const response = await chrome.tabs.sendMessage(tab.id as number, {
-            type: MessageType.BROWSER_ACTION_CLICK,
-          });
-
-          const { dataType, data } = response;
-
-          chrome.runtime.sendMessage({
-            type: MessageType.SET_SIDE_PANEL_DATA,
-            dataType,
-            data,
-          });
         }
         break;
       default:
