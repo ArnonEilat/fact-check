@@ -13,7 +13,7 @@
   "side_panel": {
     "default_path": "sidePanel.html"
   },
-  "permissions": ["sidePanel", "scripting", "activeTab"],
+  "permissions": ["sidePanel"],
   "icons": {
     "24": "icon-24.png",
     "32": "icon-32.png",
@@ -27,17 +27,6 @@
       "matches": ["https://x.com/*"],
       "js": ["contentScript.bundle.js"],
       "css": ["content.styles.css"]
-    }
-  ],
-  "host_permissions": ["https://*/*"],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "content.styles.css",
-        "contentScript.bundle.js",
-        "contentScraper.bundle.js"
-      ],
-      "matches": ["<all_urls>"]
     }
   ]
 }
