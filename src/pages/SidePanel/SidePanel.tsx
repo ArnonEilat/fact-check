@@ -87,8 +87,6 @@ const SidePanel = () => {
             systemPrompt,
           });
 
-          // prompt = 'tell me a joke';
-
           const tokenCount = await session.countPromptTokens(prompt);
 
           if (tokenCount > session.maxTokens) {
