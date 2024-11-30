@@ -129,7 +129,16 @@ const SidePanel = () => {
         <>
           <div className="markdown-container">
             {loading && <Loader message={loading} />}
-            <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>
+            <Markdown
+              components={{
+                a: ({ node, ...props }) => (
+                  <a {...props} target="_blank" rel="noopener noreferrer" />
+                ),
+              }}
+              remarkPlugins={[remarkGfm]}
+            >
+              {markdown}
+            </Markdown>
           </div>
         </>
       )}
