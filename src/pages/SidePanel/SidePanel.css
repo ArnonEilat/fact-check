@@ -1,5 +1,5 @@
-@import 'https://unpkg.com/open-props';
 @import 'https://unpkg.com/open-props/normalize.min.css';
+@import 'https://unpkg.com/open-props';
 @import 'https://unpkg.com/open-props/buttons.min.css';
 
 html {
@@ -7,21 +7,14 @@ html {
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   position: relative;
 
-  font-size: 100%;
+  /* font-size: 100%; */
   min-height: 100%;
 }
 
 .App {
-  padding: 0px;
-  background-color: #282c34;
+  background-color: #212529;
   min-height: 100vh;
 }
 
@@ -31,10 +24,9 @@ body {
 }
 
 .markdown-container {
-  max-width: calc(100% - 48px);
-  margin: 0 auto;
+  max-width: calc(100% - 28px);
+  margin: 0 auto 0 16px;
   padding: 0 0 30px 0;
-  color: white;
 }
 
 .buttons {
@@ -43,4 +35,13 @@ body {
   padding: 24px 0 18px 0;
   display: flex;
   gap: 24px;
+}
+
+:where(ol, ul) {
+  padding-inline-start: var(--size-3);
+}
+
+:where(li) {
+  max-inline-size: unset;
+  padding-inline-start: var(--size-0);
 }
