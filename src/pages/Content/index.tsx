@@ -44,10 +44,17 @@ const callback = async (_mutationList: any, _observer: any) => {
       const dateTime =
         post.querySelector('time')?.getAttribute('datetime') ?? '';
 
+      const data = {
+        content,
+        author,
+        dateTime,
+        href: window.location.href,
+      } as SocialMediaPost;
+
       chrome.runtime.sendMessage({
         type: MessageType.OPEN_SIDE_PANEL,
         dataType: SidePanelDataType.SOCIAL_MEDIA_POST,
-        data: { content, author, dateTime } as SocialMediaPost,
+        data,
       });
     });
 

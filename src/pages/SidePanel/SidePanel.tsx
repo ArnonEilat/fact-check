@@ -5,12 +5,12 @@ import remarkGfm from 'remark-gfm';
 import { MessageType, SidePanelDataType } from '../../types';
 import { Explainer } from './components/Explainer/Explainer';
 import { Loader } from './components/loader/loader';
-import { disclaimer } from './disclaimer';
+import { aiModelNotAvailable, disclaimer, promptIsTooLong } from './disclaimer';
 import { composePrompt } from './prompts/prompt';
 import { PromptData } from './types';
+import { copyHtml } from './utils';
 
 import './SidePanel.css';
-import { copyHtml } from './utils';
 
 const SidePanel = () => {
   const [data, setData] = useState<PromptData>();
@@ -68,15 +68,9 @@ const SidePanel = () => {
 
         const { available } =
           (await window.ai.languageModel.capabilities()) ?? 'no';
-        console.log(
-          '@@@ → available: ',
-          await window.ai.languageModel.capabilities()
-        );
 
         if (available === 'no') {
-          setMarkdown(`
-# Oops! 
-AI language model is not available`);
+          setMarkdown(aiModelNotAvailable);
           setLoading(false);
           return;
         }
@@ -98,20 +92,14 @@ AI language model is not available`);
           const tokenCount = await session.countPromptTokens(prompt);
 
           if (tokenCount > session.maxTokens) {
-            console.log(
-              prompt,
-              `
-tokenCount: ${tokenCount}
-session.maxTokens: ${session.maxTokens}`
-            );
-
-            setLoading('Prompt is too long: ' + tokenCount);
+            setLoading(false);
+            setIsAiRunning(false);
+            setMarkdown(promptIsTooLong(session.maxTokens, tokenCount));
             return;
           }
 
           setLoading('Start Streaming');
         } catch (error) {
-          console.log('@@@ → error: ', error);
           setLoading('Error creating AI model');
           return;
         }
@@ -134,15 +122,7 @@ session.maxTokens: ${session.maxTokens}`
   }, [data]);
 
   return (
-    <div className="App">
-      {!isAiRunning && markdown.length > 0 && (
-        <div className="buttons">
-          <button onClick={copyHtml}>Copy</button>
-          <button onClick={() => navigator.clipboard.writeText(markdown)}>
-            Copy Markdown
-          </button>
-        </div>
-      )}
+    <>
       {showExplainer ? (
         <Explainer />
       ) : (
@@ -153,7 +133,15 @@ session.maxTokens: ${session.maxTokens}`
           </div>
         </>
       )}
-    </div>
+      {!isAiRunning && markdown.length > 0 && (
+        <div className="buttons">
+          <button onClick={copyHtml}>Copy</button>
+          <button onClick={() => navigator.clipboard.writeText(markdown)}>
+            Copy Markdown
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 

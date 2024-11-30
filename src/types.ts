@@ -2,6 +2,7 @@ export type SocialMediaPost = {
   content: string;
   author: string;
   dateTime: string;
+  href: string;
 };
 
 export type Article = {
