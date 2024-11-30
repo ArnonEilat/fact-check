@@ -8,7 +8,8 @@
     ],
     "types": [
       "chrome",
-      "@types/dom-chromium-ai"
+      "@types/dom-chromium-ai",
+      "@types/chrome"
     ],
     "allowJs": false,
     "skipLibCheck": true,

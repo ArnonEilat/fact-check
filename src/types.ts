@@ -31,7 +31,7 @@ export enum MessageType {
   OPEN_SIDE_PANEL = 'open-side-panel',
   SIDE_PANEL_LOADED = 'side-panel-loaded',
   SET_SIDE_PANEL_DATA = 'set-side-panel-data',
-  SET_SIDE_PANEL_MODE = 'set-side-panel-mode',
+  SHOW_EXPLAINER = ' show-explainer',
 }
 
 export enum SidePanelDataType {
