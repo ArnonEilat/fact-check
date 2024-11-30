@@ -1,7 +1,7 @@
 {
   "name": "chrome-extension-boilerplate-react",
-  "version": "0.0.1",
-  "description": "A chrome extension to fact check the content of the page using the chrome AI API",
+  "version": "0.0.3",
+  "description": "Fact check the content using the chrome AI API",
   "license": "MIT",
   "repository": {
     "type": "git",
