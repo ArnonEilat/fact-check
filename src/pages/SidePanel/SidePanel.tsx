@@ -109,7 +109,7 @@ const SidePanel = () => {
         ) as ReadableStream<string>;
 
         let txt = '';
-        for await (const chunk of stream) {
+        for await (const chunk of stream as unknown as AsyncIterable<string>) {
           setLoading(false);
           setMarkdown(chunk);
           txt = chunk;
