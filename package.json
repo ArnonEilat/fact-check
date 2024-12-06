@@ -1,6 +1,6 @@
 {
   "name": "chrome-extension-boilerplate-react",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Fact check the content using the chrome AI API",
   "license": "MIT",
   "repository": {
