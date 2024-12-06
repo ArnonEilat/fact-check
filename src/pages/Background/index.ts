@@ -19,7 +19,7 @@ chrome.runtime.onMessage.addListener(
           enabled: true,
         });
 
-        await delay(200);
+        await delay(500);
 
         const { dataType, data } = message;
 
