@@ -62,8 +62,6 @@ const SidePanel = () => {
 
     composePrompt(data, (s) => setLoading(s)).then(
       async ({ prompt, systemPrompt }) => {
-        console.log('@@@ → prompt, systemPrompt : ', prompt, systemPrompt);
-
         setLoading('Checking AI language model availability');
 
         const { available } =
